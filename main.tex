@@ -27,12 +27,14 @@
 
 % Para flotar figuras y tablas
 \usepackage{framed}
+\usepackage{float}
 
 % Para asegurar que las figuras y tablas queden en la secci\'on correspondiente
 \usepackage[section,above,below]{placeins}
 
 % Para microtipograf\'{\i}a
 \usepackage{microtype}
+\usepackage{needspace}
 
 % Permite tama\~no de fuentes arbitrarios
 \usepackage{anyfontsize}
@@ -52,13 +54,13 @@
 % \parbox[b] es para poner texto sobre el bottom
 \newpagestyle{ruled}{
 	\sethead{\includegraphics[width=3.7cm]{./images/UADE_LARGE}}
-			{\parbox[b]{0.43\textwidth}{\raggedright\MakeUppercase{Título de la PFI}}} % El parámetro 0.43 puede modificarse para tener más espacio en la columan del medio, y que así el título de la tesis entre mejor.
+			{\parbox[b]{0.43\textwidth}{\raggedright\scriptsize\MakeUppercase{NIDIO: Plataforma de análisis de propiedades y del entorno urbano en CABA para la toma de decisiones de usuarios, utilizando datos geoespaciales}}} % El parámetro 0.43 puede modificarse para tener más espacio en la columan del medio, y que así el título de la tesis entre mejor.
 			{
 				\raisebox{1.5ex}{%
 					\parbox[b]{0.26\textwidth}{\raggedleft
 					\begin{tabular}{r}
-						Curry, Haskell \\
-						Howard, William Alvin
+						Alfie, Magali Norma \\
+						Suriano, Pilar
 					\end{tabular}
 					}
 				}
@@ -199,6 +201,11 @@
   {\thesubsubsection}{1em}{}
 \titlespacing*{\subsubsection}{0pt}{12pt}{6pt}
 
+\AddToHook{cmd/chapter/before}{\Needspace{5\baselineskip}}
+\AddToHook{cmd/section/before}{\Needspace{4\baselineskip}}
+\AddToHook{cmd/subsection/before}{\Needspace{4\baselineskip}}
+\AddToHook{cmd/subsubsection/before}{\Needspace{4\baselineskip}}
+
 % -> Acá se empieza a modificar el tamaño de los títulos autogenerados, como los de las listas de figuras y tablas
 \usepackage{tocloft}
 \cftsetindents{table}{0em}{4em}
@@ -222,7 +229,10 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
-    citecolor=red
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black,
+    filecolor=black
 }
 % Para la entrega final:
 %\usepackage[hidelinks]{hyperref}
@@ -252,13 +262,12 @@
 ]{cover/6d6a18e7-ec20-45ae-99ea-084094abeebe.pdf}
 \clearpage
 	\input{chapters/title}
-	\input{chapters/acknowledgments}
-	\newpage
-	\input{chapters/summary}
-	\newpage
-	\input{chapters/abstract}
-	\newpage
 	\tableofcontents
+	\newpage
+	\listoffigures
+	\newpage
+	\listoftables
+	\newpage
 	\input{chapters/chapter01}
 	\input{chapters/chapter02}
 	\input{chapters/conclusion}
@@ -268,8 +277,4 @@
 
 	\appendix
 	\input{chapters/appendix/annex}
-	\newpage
-	\listoffigures
-	\newpage
-	\listoftables
 \end{document}

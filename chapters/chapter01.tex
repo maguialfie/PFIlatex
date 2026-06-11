@@ -1,78 +1,69 @@
-\chapter{Estado del Arte}
+\chapter{Introducción}
 
-\emph{El siguiente capítulo presenta un ejemplo de Estado del Arte. Se puede observar el uso de referencias bibliográficas, la estructura del contenido y el estilo de redacción académica esperado.}
+El mercado inmobiliario de la Ciudad Autónoma de Buenos Aires (CABA) constituye uno de los segmentos económicos de mayor relevancia para la población local, tanto por el volumen de transacciones que moviliza como por el impacto directo que tiene en las decisiones de vida de individuos y familias. Sin embargo, a pesar de la existencia de portales digitales consolidados como Zonaprop, Argenprop y Mercado Libre Inmuebles, el proceso de evaluación de una propiedad continúa siendo, para la gran mayoría de los usuarios, una experiencia signada por la opacidad, la incertidumbre y la asimetría informativa. Los portales inmobiliarios vigentes resuelven eficazmente el problema de la oferta: permiten publicar y encontrar propiedades. Sin embargo, no ofrecen herramientas que asistan al comprador o inquilino en la evaluación objetiva de lo que están considerando: no indican si un precio es coherente con el mercado, no permiten comparar el entorno urbano de distintas propiedades, ni ofrecen una visión geoespacial del precio por metro cuadrado en la zona de interés. Nidio surge como respuesta a esta brecha. Se trata de un prototipo funcional de plataforma web orientada al análisis del mercado inmobiliario en CABA, cuyo propósito central es asistir a compradores e inquilinos en la toma de decisiones, mediante la integración de un modelo de valuación basado en datos, visualizaciones geoespaciales de precios y un indicador de entorno urbano que evalúa la proximidad a puntos de interés, niveles de ruido y condiciones de seguridad por zona. A diferencia de los portales existentes, Nidio no es una herramienta de búsqueda: es una herramienta de análisis.
 
-Este cap\'{\i}tulo asume cierta familiaridad con c\'alculo lambda y computaci\'on cu\'antica. Si este no es el caso del lector, se sugiere leer primero el cap\'{\i}tulo 2 y luego el presente cap\'{\i}tulo.
+\section{Planteamiento del Problema}
 
-En 1982, Richard Feynman destac\'o que la computaci\'on cl\'asica no alcanza para crear simulaciones de forma eficiente \parencite{Feynman1982}, debido
-a la propia construcci\'on de las computadoras cl\'asicas.
-La simulaci\'on de interacciones entre \(N\) part\'{\i}culas a nivel cu\'antico presenta una complejidad de orden exponencial de los recursos necesarios en la computaci\'on cl\'asica y esto no sucede si lo hici\'eramos directamente con una computadora con propiedades cu\'anticas.
+\subsection{La asimetría de la información en el mercado inmobiliario de CABA}
 
-La computaci\'on cu\'antica puede ser vista como un modelo de computaci\'on para la mec\'anica cu\'antica. La idea es considerar
-los estados de las part\'{\i}culas como estados del sistema computacional, y su evoluci\'on como un proceso de c\'omputo. Como tal,
-puede ser estudiado desde la teor\'{\i}a de lenguajes de programaci\'on, y desde all\'{\i}, la teor\'{\i}a de tipos. Tener una teor\'{\i}a
-de tipos completa para la computaci\'on cu\'antica induce nuevas conexiones con l\'ogica, siguiendo el isomorfismo de Curry-Howard \parencite{SorensenUrzyczyn2006}. Finalmente, este camino redundar\'a en una l\'ogica formal de la mec\'anica cu\'antica, fundamentada
-por las ciencias de la computaci\'on.
+En el mercado inmobiliario actual, el acceso a la información no se distribuye de manera equitativa entre las partes. Estructuralmente, se genera una brecha donde quienes ofrecen una propiedad cuentan con un conocimiento mucho más profundo del inmueble y de su zona, mientras que quienes buscan (compradores o inquilinos) operan con datos limitados, parciales o sesgados. Esta brecha informativa tiene consecuencias prácticas y concretas. En primer lugar, dificulta que el usuario pueda determinar si el precio solicitado por una propiedad es coherente con los valores de mercado vigentes, favoreciendo la posibilidad de transacciones desequilibradas. En segundo lugar, limita la capacidad del usuario de comparar propiedades más allá de sus características físicas explícitas, ignorando dimensiones relevantes como el entorno urbano, la accesibilidad a servicios o la densidad de puntos de interés en la zona. En tercer lugar, la ausencia de herramientas de análisis accesibles concentra la capacidad de evaluación en agentes inmobiliarios, cuya objetividad no siempre está alineada con los intereses del comprador o inquilino. El mercado inmobiliario de CABA presenta condiciones particulares que agravan esta problemática. La dolarización de los precios de venta (práctica consolidada en Argentina como mecanismo de preservación de valor frente a la inflación) introduce una complejidad adicional para el usuario, que debe interpretar valores en una moneda cuya cotización ha sido históricamente volátil. A esto se suma la heterogeneidad territorial de CABA: los precios por metro cuadrado varían significativamente entre barrios e incluso entre zonas dentro de un mismo barrio, sin que esta información esté disponible de forma visual y accesible para el usuario final. Los portales digitales vigentes no abordan esta problemática de fondo. Su modelo de negocio está orientado a la publicación de avisos y a la generación de contactos entre partes, no a la provisión de análisis objetivo. Como resultado, el usuario que accede a estos portales obtiene un listado de propiedades con precios declarados por el publicante, sin ninguna referencia contextual que le permita evaluar si esos precios son razonables, ni comparar el entorno de distintas opciones de manera objetiva. La relevancia de esta problemática se ve amplificada por el contexto actual del mercado inmobiliario de CABA, que atraviesa uno de sus períodos de mayor dinamismo en casi dos décadas. Según datos oficiales del Colegio de Escribanos de la Ciudad de Buenos Aires, a lo largo de 2025 se concretaron 69.461 escrituras de compraventa, lo que representa un incremento del 26,8\% frente a las 54.770 operaciones registradas en 2024 \parencite{ColegioEscribanos2026}. Este crecimiento sostenido implica que un número creciente de compradores e inquilinos enfrenta decisiones de alta complejidad económica en un mercado donde la asimetría de información persiste estructuralmente, consolidando la necesidad de herramientas que reduzcan la brecha informativa entre quienes buscan y quienes ofrecen propiedades. Nidio busca reducir esta asimetría poniendo a disposición del usuario herramientas de análisis que actualmente requieren conocimiento técnico o acceso a fuentes de datos dispersas: un modelo de valuación que estima rangos de precio esperados para propiedades con características determinadas, mapas de calor que visualizan la distribución geoespacial de precios por metro cuadrado en CABA, y un indicador de entorno urbano denominado Life Score que evalúa la cercanía de una propiedad a los puntos de interés relevantes para el usuario.
 
-Una de las soluciones m\'as importantes presentadas por la computaci\'on cu\'antica fue dada por Peter Shor,
-en 1994 \parencite{Shor1994}. La importancia del algoritmo de Shor es la utilizaci\'on de la transformada r\'apida cu\'antica de Fourier, que tiene aplicaciones en much\'{\i}simas \'areas. Por ejemplo, permite la descomposici\'on en factores de un n\'umero, de vital importancia
-para romper la criptograf\'{\i}a de clave p\'ublica. Otro algoritmo de gran importancia es el algoritmo de Grover \parencite{Grover1996},
-por Lov K. Grover en 1996, que permite la b\'usqueda de un valor en una secuencia no ordenada, por ejemplo, para todas las combinaciones de mol\'eculas hasta dar con una que cumpla una propiedad en particular.
+\section{Objetivos Generales y Específicos}
 
-En principio estos algoritmos se describen en t\'erminos de circuitos.
-En la b\'usqueda de un lenguaje de programaci\'on que permita abstraer los conceptos,
-un concepto que nace es el de \emph{control cl\'asico}, el cual se basa
-en dirigir instrucciones a una computadora cu\'antica desde una computadora cl\'asica. Las primeras nociones de
-este manejo las da Peter Selinger en el a\~no 2004 \parencite{Selinger2004} basado en la idea de qRAM de Knill \parencite{Knill1996},
-el cual propone que es necesario un conjunto de instrucciones de alto nivel que se abstraigan del hardware,
-con un flujo de control cl\'asico.
+\subsection{Objetivo General}
 
-De este tipo de control es como nace Quipper \parencite{GreenEtAl2013}, un lenguaje
-embebido creado en 2013, que utiliza Haskell como el lenguaje de programaci\'on mediante
-la importaci\'on de librer\'{\i}as, lo que lo clasifica como lenguaje funcional. Se clasifica como
-escalable y expresivo de orden superior.
+Desarrollar un prototipo funcional de plataforma web que asista a compradores e inquilinos en la evaluación de propiedades inmobiliarias en la Ciudad Autónoma de Buenos Aires, mediante la integración de un modelo de valuación basado en datos públicos, visualizaciones geoespaciales de precios y un indicador de entorno urbano, con el propósito de aportar información objetiva para la toma de decisiones, actualmente ausente en los portales inmobiliarios existentes.
 
-En el a\~no 2017, se publica QWIRE, un lenguaje de programaci\'on cu\'antica creado para escribir en alto nivel la
-programaci\'on de circuitos cu\'anticos, interpretando a estos como superoperadores en matrices de densidad \parencite{PaykinRandZdancewic2017} (similar a Quipper).
+\subsection{Objetivos Específicos}
 
-Tambi\'en existen lenguajes cu\'anticos imperativos, como QCL (que permite al usuario definir sus propios
-operadores y funciones con una sintaxis parecida a C), o el m\'as reciente Q\# de Microsoft (que lee y
-devuelve datos cl\'asicos) nombrado as\'{\i} en referencia a C\#, dado que se accede mediante este \'ultimo.
+\begin{itemize}
+\item Diseñar y entrenar un modelo de valuación inmobiliaria que, a partir de variables como superficie, ubicación, cantidad de ambientes, tipo de propiedad y tipo de operación, estime un rango de precio esperado para una propiedad dada, permitiendo identificar posibles desviaciones respecto al mercado.
+\item Implementar visualizaciones geoespaciales interactivas que exhiban la distribución de precios por metro cuadrado en CABA, segmentadas por barrio y tipo de operación, así como mapas de calor de niveles de ruido y condiciones de seguridad por zona, facilitando la comprensión territorial del mercado inmobiliario.
+\item Desarrollar el Life Score, un indicador de entorno urbano que cuantifique la cercanía de una propiedad seleccionada a categorías de puntos de interés definidas, utilizando datos públicos de OpenStreetMap.
+\item Integrar los tres componentes anteriores en una interfaz web funcional, coherente y accesible, que permita al usuario realizar una evaluación holística de una propiedad de interés.
+\item Validar los flujos principales del sistema mediante una base de datos sintética de inmuebles, garantizando la reproducibilidad del prototipo y el cumplimiento de la normativa vigente en materia de protección de datos personales.
+\end{itemize}
 
-Otro tipo de control es el control cu\'antico, introducido por Altenkirch y Grattage
-\parencite{AltenkirchGrattage2005},
-donde se propone un c\'alculo que no necesite de un control indirecto de la computadora cu\'antica, sino que se
-pueda usar directamente en la misma. En 2019, se propone una extensi\'on cu\'antica al \(\lambda\)-c\'alculo (Lineal)
-m\'as expresivo \parencite{DiazcaroEtAl2019}, en el paradigma de control cu\'antico, basado en la t\'ecnica de la realizabilidad \parencite{Kleene1945}. Lineal~\parencite{ArrighiDowek2017} fue uno de los primeros lenguajes que tuvo como objetivo desarrollar un c\'alculo lambda de control cu\'antico. Es un c\'alculo lambda sin tipos extendido con superposiciones lineales arbitrarias. Las reglas de reescritura garantizan la confluencia y se toma una forma can\'onica como forma normal de los t\'erminos. Para evitar la clonaci\'on, se considera una estrategia {\em call-by-base}: se puede aplicar una abstracci\'on \(\lambda x.t\) a una superposici\'on de valores \((\alpha.v+\beta.w)\) que producen \(\alpha. (\lambda x.t)v+\beta.(\lambda x.t)w\). De esta manera, no s\'olo se evita la clonaci\'on, sino que adem\'as todas las abstracciones son lineales por construcci\'on. Esto permite expresar matrices y vectores y, por tanto, programas cu\'anticos, pero tambi\'en mapas no unitarios y, por supuesto, vectores no normalizados.
+\section{Alcance del Proyecto (MVP)}
 
-\begin{center}
-	\ldots Texto \ldots
-\end{center}
+El presente proyecto comprende el desarrollo de un prototipo funcional, MVP (Minimum Viable Product), de la plataforma web Nidio. El MVP se delimita a tres componentes funcionales integrados en una única interfaz web, descritos a continuación.
 
-De las extensiones del \(\lambda\)-c\'alculo, Lambda-\(S\) \parencite{DiazcaroDowekRinaldi2019, DiazcaroMalherbe2024} presenta un sistema de tipos capaz de distinguir
-entre un estado superpuesto y un qubit con un estado no superpuesto respecto a una base dada. En esta tesis se propone
-una extensi\'on a Lambda-\(S\) para permitir identificar valores duplicables en m\'as de una base de medici\'on.
+\subsection{Modelo de Valuación}
 
-Lambda-\(S\) est\'a enfocado en la propiedad cu\'antica conocida como superposici\'on. Su sistema de tipos puede distinguir entre estados superpuestos, respecto a una base dada, y estados de dicha base. Este sistema de tipos representa un dual de la l\'ogica lineal \parencite{DiazcaroMalherbe2020}.
+El modelo de valuación es el componente central de Nidio. Se entrenará con datasets de propiedades disponibles públicamente, correspondientes al mercado inmobiliario de CABA para el período 2019--2026. Dado que los precios de venta en el mercado inmobiliario argentino se encuentran denominados en dólares estadounidenses (USD), práctica consolidada como mecanismo de preservación de valor, los datos utilizados para el entrenamiento del modelo estarán expresados en dicha moneda, evitando distorsiones asociadas a la variación del tipo de cambio o la inflación en pesos. El modelo se segmentará por tipo de operación (compra o alquiler) y por tipo de propiedad (departamento, casa o PH). Las variables de entrada incluirán: superficie cubierta, ubicación (barrio), cantidad de ambientes y tipo de propiedad. El output del modelo será un rango de precio esperado, no un valor exacto, lo que permite al usuario identificar si una propiedad está sobrevaluada o subvaluada respecto a propiedades comparables en el mercado. Adicionalmente, el modelo incorporará datos agregados del Instituto de Estadística y Censos de la Ciudad Autónoma de Buenos Aires (IDECBA), utilizados como referencia contextual para validar y ajustar las estimaciones a nivel zonal.
 
-En \(\lambda\)-calculo, aplicar el t\'ermino \(\lambda x.(x \otimes x)\), que expresa una funci\'on no lineal, a un t\'ermino \(u\) produce el t\'ermino \((\lambda x.(x \otimes x))u\), que se eval\'ua a \(u
-	\otimes u\). Pero \enquote{clonar} este vector, es decir, el t\'ermino \(u\), est\'a prohibido en la computaci\'on cu\'antica.
-Varias extensiones cu\'anticas al \(\lambda\)-c\'alculo tratan este problema de diferentes maneras.
+\subsection{Visualización Geoespacial}
 
-Una manera es prohibir la construcci\'on del t\'ermino \(\lambda x.(x \otimes x)\), usando un sistema de tipos inspirado en la l\'ogica lineal
-\parencite{Girard1987,Abramsky1993}, lo que, por ejemplo, deriv\'o en c\'alculos l\'ogico-lineales 
-\parencite{	AltenkirchGrattage2005,
-	SelingerValiron2009,
-	GreenEtAl2013,
-	PaganiSelingerValiron2014,
-	Zorzi2016}.
+El segundo componente consiste en visualizaciones geoespaciales interactivas que incluyen tres tipos de mapas de calor: uno de precios por metro cuadrado segmentado por barrio y tipo de operación, uno de niveles de ruido por zona basado en el Mapa de Ruido de la Ciudad de Buenos Aires (BA Data), y uno de condiciones de seguridad basado en el dataset de Delitos de la Ciudad de Buenos Aires (BA Data), utilizando específicamente los registros de hurtos y robos ocurridos en CABA. En conjunto, estas visualizaciones permiten al usuario comprender la distribución territorial del mercado inmobiliario, identificar zonas de alto y bajo valor relativo, evaluar el entorno sonoro y de seguridad de las propiedades que está considerando, y contextualizar su decisión dentro de una visión geográfica integral de CABA.
 
-\begin{center}
-	\ldots Texto \ldots
-\end{center}
+\subsection{Life Score}
 
-Esto deriv\'o ulteriormente en una sem\'antica categ\'orica para el lenguaje, donde los t\'erminos del lenguaje son interpretados en una categor\'{\i}a cartesiana \textbf{Set}, mientras que las operaciones ocurren en una categor\'{\i}a aditiva monoidal \textbf{Vec}, a donde se transportan usando una \emph{adjunci\'on} entre ambas categor\'{\i}as \parencite{DiazcaroMalherbe2024, DiazcaroMalherbe2020}.
+El Life Score es un indicador de entorno urbano que evalúa la calidad del entorno de una propiedad seleccionada por el usuario, en función de su proximidad a siete categorías de puntos de interés (POIs): transporte público, supermercados y comercios esenciales, espacios verdes, centros de salud, polos gastronómicos, vida nocturna e instituciones educativas. Los datos de POIs se obtienen de OpenStreetMap mediante la librería OSMnx, que permite descargar y procesar información geoespacial de CABA de forma local. La visualización del mapa y los POIs cercanos se realiza mediante React Leaflet en el frontend. El indicador se calcula midiendo la distancia desde la propiedad hasta el POI más cercano de cada categoría, convirtiendo esa distancia en un puntaje parcial: a menor distancia, mayor puntaje. El usuario asigna un peso personalizado a cada categoría según sus preferencias, lo que permite obtener un Life Score adaptado a su perfil. Adicionalmente, la plataforma incorpora un filtro de búsqueda que permite al usuario ingresar una dirección y visualizar las propiedades del catálogo ubicadas dentro de un radio máximo de 2 kilómetros.
 
-Este lenguaje permite expresar algoritmos cu\'anticos con una informaci\'on muy precisa sobre los datos cu\'anticos procesados por esos algoritmos. Sin embargo, dado que ya se cuenta con un lenguaje que puede decidir cu\'ando un qubit est\'a en una base computacional, y cu\'ando podr\'{\i}a no estarlo, sin necesidad de medir, sino simplemente por haber seguido su evoluci\'on a lo largo del algoritmo, es interesante extender dicha t\'ecnica a otras bases, que es lo que hacemos en esta tesis.
+\subsection{Plataforma Web}
 
-% Generalmente, uno puede poner acá un breve párrafo sobre la estructura de la tesis, explicando qué se verá en cada capítulo, y dicha explicación de a lo sumo una línea de largo. Consultar con los docentes de la PFI previamente.
+Los tres componentes anteriores se integrarán en una interfaz web desarrollada con React en el frontend y Spring Boot (Java) en el backend. El procesamiento de datos y el modelo de valuación se implementarán en Python, expuesto como microservicio REST independiente. La base de datos será relacional (PostgreSQL), con soporte geoespacial mediante PostGIS. El despliegue se realizará en infraestructura cloud, garantizando la disponibilidad del prototipo durante el período de evaluación. La plataforma no exhibirá propiedades reales de terceros. Se utilizará una base de datos sintética de inmuebles para simular publicaciones y validar los flujos principales del sistema, en cumplimiento de la Ley N° 25.326 de Protección de Datos Personales \parencite{ArgentinaLey25326} y de las condiciones de uso de los portales inmobiliarios de referencia.
+
+\section{Fuera de Alcance y Limitaciones}
+
+\subsection{Fuera de Alcance}
+
+Los siguientes elementos quedan explícitamente excluidos del alcance del MVP de Nidio y son considerados como posibles líneas de trabajo futuro:
+
+\begin{itemize}
+\item \textbf{Datos en tiempo real.} El modelo de valuación opera sobre datasets estáticos; no se contempla la ingesta automatizada de nuevas publicaciones en tiempo real.
+\item \textbf{Personalización del Life Score.} La personalización del Life Score se limita a la asignación de pesos sobre siete categorías predefinidas mediante casillas de selección. No se contempla la incorporación de categorías personalizadas por el usuario ni la búsqueda por lenguaje natural.
+\item \textbf{Módulo de publicación de propiedades reales.} La funcionalidad de publicación de propiedades reales por parte de usuarios o inmobiliarias queda fuera del alcance de este prototipo.
+\item \textbf{Aplicación móvil nativa.} El prototipo se limita al desarrollo de una interfaz web responsiva; no se contempla el desarrollo de aplicaciones para iOS o Android.
+\item \textbf{Integración con portales inmobiliarios externos.} No se realizará scraping ni integración de datos provenientes de Zonaprop, Argenprop, Mercado Libre Inmuebles ni ningún otro portal, en consonancia con sus condiciones de uso y con la normativa vigente.
+\item \textbf{Predicción exacta de precios.} El modelo produce rangos de precio esperado, no valores puntuales. La estimación de un precio exacto implicaría un nivel de precisión no alcanzable con los datos disponibles y podría inducir a error al usuario.
+\end{itemize}
+
+\subsection{Limitaciones Identificadas}
+
+\begin{itemize}
+\item \textbf{Calidad y heterogeneidad de los datasets públicos.} Los datos de entrenamiento del modelo provienen de fuentes públicas cuya calidad, completitud y actualización no están garantizadas de forma uniforme. Se prevé una etapa de limpieza y preprocesamiento de datos que puede afectar el volumen final del conjunto de entrenamiento.
+\item \textbf{Variabilidad intra-zonal.} La segmentación por barrio puede no capturar variaciones de precio significativas dentro de una misma zona geográfica, lo que puede introducir imprecisión en las estimaciones del modelo para propiedades ubicadas en áreas de alta heterogeneidad de precios.
+\item \textbf{Base de datos sintética.} La utilización de una base de datos sintética para simular publicaciones garantiza el cumplimiento legal del prototipo, pero implica que los flujos de la plataforma son validados sobre datos artificiales, no sobre comportamiento real de usuarios.
+\item \textbf{Dependencia de servicios externos.} El Life Score depende de la disponibilidad de la API de OpenStreetMap (Overpass API), cuyos tiempos de respuesta pueden ser variables. Para mitigar este riesgo, se evaluará la posibilidad de trabajar con una descarga offline de los POIs de CABA.
+\end{itemize}
